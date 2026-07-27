@@ -53,7 +53,7 @@ aura/
 ### Prerequisites
 - Python 3.9+
 - Git
-- 8GB RAM minimum
+- 8GB RAM minimum (for model training)
 
 ### Installation
 
@@ -64,22 +64,98 @@ pip install -r requirements.txt
 python -m pytest tests/
 ```
 
+### First Run
+
+```python
+from core.tokenizer import BPETokenizer
+from core.model import AuraModel
+from core.runtime import InferenceEngine
+
+# Initialize tokenizer
+tokenizer = BPETokenizer()
+tokenizer.load_vocab('vocab.bin')
+
+# Load model
+model = AuraModel.from_checkpoint('model.ckpt')
+
+# Run inference
+engine = InferenceEngine(model, tokenizer)
+response = engine.generate("Hello, what is the meaning of life?")
+print(response)
+```
+
+## Architecture Overview
+
+### Phase 1: Tokenizer
+Byte-Pair Encoding implementation for text tokenization.
+
+### Phase 2: Foundation Model
+Transformer decoder architecture for autoregressive generation.
+
+### Phase 3: Training Framework
+AdamW optimizer with cross-entropy loss.
+
+### Phase 4: Runtime Engine
+Inference loop with temperature & top-k sampling.
+
+### Phase 5: Memory System
+Short-term buffer + episodic storage with semantic retrieval.
+
+### Phase 6: Reasoning Engine
+Chain-of-thought, tree search, goal decomposition.
+
+### Phase 7: Plugin System
+Dynamic plugin loading and lifecycle management.
+
+### Phase 8: Knowledge System
+Structured fact storage with indexing and retrieval.
+
+### Phase 9: Voice System
+Speech-to-text and text-to-speech processing.
+
+### Phase 10: Vision System
+Image feature extraction and multimodal fusion.
+
+### Phase 11: Android Application
+Native mobile interface with JNI bindings.
+
 ## Development Status
 
-- [x] Phase 1: Tokenizer
-- [x] Phase 2: Foundation Model
-- [x] Phase 3: Training Framework
-- [x] Phase 4: Runtime Engine
-- [x] Phase 5: Memory System
-- [x] Phase 6: Reasoning Engine
-- [x] Phase 7: Plugin System
-- [x] Phase 8: Knowledge System
-- [x] Phase 9: Voice System
-- [x] Phase 10: Vision System
-- [x] Phase 11: Android Application
+- [x] Phase 1: Tokenizer - IN PROGRESS
+- [ ] Phase 2: Foundation Model
+- [ ] Phase 3: Training Framework
+- [ ] Phase 4: Runtime Engine
+- [ ] Phase 5: Memory System
+- [ ] Phase 6: Reasoning Engine
+- [ ] Phase 7: Plugin System
+- [ ] Phase 8: Knowledge System
+- [ ] Phase 9: Voice System
+- [ ] Phase 10: Vision System
+- [ ] Phase 11: Android Application
+
+## Documentation
+
+- [Tokenizer Design](docs/TOKENIZER.md)
+- [Model Architecture](docs/MODEL.md)
+- [Training Guide](docs/TRAINING.md)
+- [Runtime API](docs/RUNTIME.md)
+- [Memory System](docs/MEMORY.md)
+- [Reasoning Engine](docs/REASONING.md)
+- [Plugin Development](docs/PLUGINS.md)
+- [Knowledge System](docs/KNOWLEDGE.md)
+- [Voice Integration](docs/VOICE.md)
+- [Vision Module](docs/VISION.md)
+- [Android Integration](docs/ANDROID.md)
 
 ## License
 
-MIT License
+MIT License - See LICENSE file
 
-**Status**: 🚀 Active Development | **Last Updated**: July 27, 2026
+## Author
+
+**Lead Software Architect & AI Engineer**: Building Aura
+
+---
+
+**Status**: 🚀 Active Development
+**Last Updated**: July 27, 2026
